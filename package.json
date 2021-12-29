@@ -31,18 +31,27 @@
     "css-loader": "^6.3.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.2.1",
+    "mini-css-extract-plugin": "^2.4.5",
+    "postcss": "^8.4.5",
+    "postcss-loader": "^6.2.1",
     "regenerator-runtime": "^0.13.9",
     "style-loader": "^3.3.0",
     "ts-loader": "^9.2.6",
     "typescript": "^4.4.4",
+    "typings-for-css-modules-loader": "^1.7.0",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.0",
     "webpack-dev-server": "^4.2.1"
   },
   "dependencies": {
+    "@teamsupercell/typings-for-css-modules-loader": "^2.5.1",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
+    "@types/uuid": "^8.3.3",
+    "autoprefixer": "^10.4.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "sass-loader": "^12.4.0",
+    "uuid": "^8.3.2"
   }
 }

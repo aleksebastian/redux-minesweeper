@@ -1,13 +1,15 @@
 import React from "react";
-import "./App.css";
 
-type GreetingProps = {
-  greeting: string;
-};
+import Board from "./components/Board";
 
-const Greeting = (props: GreetingProps) => <p>{props.greeting}</p>;
+import styles from "./app.module.css";
 
-const App = () => <Greeting greeting="Hello world!" />;
+const App = () => (
+  <div className={styles.main}>
+    <h1>Minesweeper</h1>
+    <Board />
+  </div>
+);
 
 export default App;
 

@@ -1,0 +1,28 @@
+.main {
+  margin: 0;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+  flex-direction: column;
+  color: white;
+  height: 100vh;
+  gap: 3rem;
+}
+
+.board > .hidden {
+  background-color: gray;
+  cursor: pointer;
+}
+
+.board > .mine {
+  background-color: red;
+}
+
+.board > .number {
+  background-color: none;
+}
+
+.board > .marked {
+  background-color: yellow;
+}
