@@ -44,6 +44,7 @@
     "webpack-dev-server": "^4.2.1"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.7.1",
     "@teamsupercell/typings-for-css-modules-loader": "^2.5.1",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
@@ -51,7 +52,7 @@
     "autoprefixer": "^10.4.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "sass-loader": "^12.4.0",
+    "react-redux": "^7.2.6",
     "uuid": "^8.3.2"
   }
 }
