@@ -4,7 +4,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  border: 2px solid #bbb;
+  color: whitesmoke;
+  border: 2px solid rgb(168, 165, 162);
   user-select: none;
+  border-radius: 0.125rem;
+}
+
+.hidden {
+  background-color: rgb(214 211 209);
+  cursor: pointer;
+}
+
+.mine {
+  background-color: red;
+}
+
+.number {
+  background-color: none;
+}
+
+.marked {
+  background-color: yellow;
 }
