@@ -37,6 +37,7 @@ const createBoard = (boardSize: number, numOfMines: number) => {
         y,
         mine: minePositions.some(positionMatch.bind(null, { x, y })),
         state: "hidden",
+        number: 0,
       };
       row.push(cell);
     }
@@ -45,4 +46,19 @@ const createBoard = (boardSize: number, numOfMines: number) => {
   return board;
 };
 
-export { createBoard };
+const nearbyCells = (board: any, { x, y }: any) => {
+  const cells = [];
+
+  for (let xOffSet = -1; xOffSet <= 1; xOffSet++) {
+    for (let yOffSet = -1; yOffSet <= 1; yOffSet++) {
+      const cell = board[x + xOffSet]?.[y + yOffSet];
+      if (cell) {
+        cells.push(cell);
+      }
+    }
+  }
+
+  return cells;
+};
+
+export { createBoard, nearbyCells };
