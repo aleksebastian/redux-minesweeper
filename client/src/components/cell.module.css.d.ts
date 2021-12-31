@@ -1,10 +1,6 @@
 declare namespace CellModuleCssNamespace {
   export interface ICellModuleCss {
     cell: string;
-    hidden: string;
-    marked: string;
-    mine: string;
-    number: string;
   }
 }
 

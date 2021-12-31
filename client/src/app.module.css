@@ -1,35 +1,15 @@
 .main {
   padding: 2rem;
-  /* background-color: rgb(30 41 59); */
   display: flex;
   align-items: center;
   font-size: 2rem;
   flex-direction: column;
   color: rgb(30 58 138);
-  height: 100vh;
-  width: 100vw;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .header {
   font-size: 3rem;
   font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-
-.board > .hidden {
-  background-color: gray;
-  cursor: pointer;
-}
-
-.board > .mine {
-  background-color: red;
-}
-
-.board > .number {
-  background-color: none;
-}
-
-.board > .marked {
-  background-color: yellow;
+  margin-bottom: 1rem;
 }

@@ -3,7 +3,7 @@ import styles from "./cell.module.css";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { revealCell, markCell, gameOver, selectCells } from "./cellSlice";
-import { updateMineCount, startGame, endGame, resetGame } from "./gameSlice";
+import { updateMineCount, startGame, endGame } from "./gameSlice";
 
 type CellProps = {
   x: number;

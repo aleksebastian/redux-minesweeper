@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./board.module.css";
 
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch } from "../hooks";
 import { setBoard } from "./cellSlice";
-import { selectGame, setGameStats } from "./gameSlice";
+import { setGameStats } from "./gameSlice";
 
-import { createBoard, nearbyCells } from "./boardUtils";
+import { createBoard } from "./boardUtils";
 
 import Cell from "./Cell";
 
