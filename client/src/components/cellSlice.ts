@@ -3,8 +3,22 @@ import type { RootState } from "../store";
 
 import { nearbyCells } from "./boardUtils";
 
-const initialState: any = {
-  cells: {},
+type cell = {
+  x: number;
+  y: number;
+  mine: boolean;
+  state: string;
+  number: number;
+};
+type row = [cell];
+type board = [row];
+
+interface Cells {
+  cells: board;
+}
+
+const initialState: Cells = {
+  cells: [[{ x: 0, y: 0, mine: false, state: "hidden", number: 0 }]],
 };
 
 export const cellsSlice = createSlice({
@@ -14,7 +28,7 @@ export const cellsSlice = createSlice({
     setBoard: (state, action: PayloadAction<any>) => {
       state.cells = action.payload;
     },
-    markCell: (state, action: PayloadAction<any>) => {
+    markCell: (state, action: PayloadAction<cell>) => {
       const cell = action.payload;
       const cellState = state.cells[cell.x][cell.y].state;
       if (cellState === "hidden") {
@@ -25,7 +39,7 @@ export const cellsSlice = createSlice({
         return;
       }
     },
-    revealCell: (state, action: PayloadAction<any>) => {
+    revealCell: (state, action: PayloadAction<cell>) => {
       const revealCell = (cell = action.payload) => {
         const cellState = state.cells[cell.x][cell.y].state;
 
@@ -37,7 +51,6 @@ export const cellsSlice = createSlice({
         } else {
           state.cells[cell.x][cell.y].state = "number";
         }
-
         const adjacentCells = nearbyCells(state.cells, cell);
         const adjacentMines = adjacentCells.filter((cell) => cell.mine);
 
@@ -51,8 +64,8 @@ export const cellsSlice = createSlice({
       revealCell();
     },
     gameOver: (state) => {
-      state.cells.forEach((row: any) => {
-        row.forEach((cell: any) => {
+      state.cells.forEach((row) => {
+        row.forEach((cell) => {
           cell.state = cell.mine ? "mine" : "number";
           if (!cell.number) {
             const adjacentCells = nearbyCells(state.cells, cell);

@@ -7,17 +7,21 @@ import { setBoard } from "./cellSlice";
 
 import { createBoard } from "./boardUtils";
 
-const Display = ({ data }: any) => {
+interface Data {
+  data: string | number;
+}
+
+const Display = ({ data }: Data) => {
   return <div className={styles.display}>{data}</div>;
 };
 
-const GameStatus = (props: any) => {
+const GameStatus = () => {
   const dispatch = useAppDispatch();
   const { currentMineCount, started, size, mineCount } =
     useAppSelector(selectGame);
 
   const [counter, setCounter] = useState(0);
-  let timer: any;
+  let timer: ReturnType<typeof setTimeout>;
 
   const btnVals = {
     default: "😴",
@@ -59,8 +63,6 @@ const GameStatus = (props: any) => {
       setBtnVal(btnVals.reset);
     }
   };
-
-  // let currentBtnVal = btnVal.default;
 
   return (
     <div className={styles.main}>

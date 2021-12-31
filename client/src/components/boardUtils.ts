@@ -46,7 +46,21 @@ const createBoard = (boardSize: number, numOfMines: number) => {
   return board;
 };
 
-const nearbyCells = (board: any, { x, y }: any) => {
+type cell = {
+  x: number;
+  y: number;
+  mine: boolean;
+  state: string;
+  number: number;
+};
+type row = [cell];
+type board = [row];
+
+interface Cells {
+  cells: board;
+}
+
+const nearbyCells = (board: board, { x, y }: cell) => {
   const cells = [];
 
   for (let xOffSet = -1; xOffSet <= 1; xOffSet++) {

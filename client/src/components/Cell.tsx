@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import styles from "./cell.module.css";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
@@ -17,16 +17,16 @@ const Cell = ({ x, y }: CellProps) => {
   const dispatch = useAppDispatch();
   const reduxCellState = useAppSelector(selectCells);
   const { mine, state, number } = reduxCellState[x][y];
-  const globalCellProps = { x, y, mine, state };
+  const globalCellProps = { x, y, mine, state, number };
 
-  const handleLeftClick = (e: any) => {
+  const handleLeftClick = (e: MouseEvent) => {
     e.preventDefault();
     dispatch(markCell(globalCellProps));
     dispatch(updateMineCount(state));
     dispatch(startGame());
   };
 
-  const handleRightClick = (e: any) => {
+  const handleRightClick = (e: MouseEvent) => {
     e.preventDefault();
     if (mine) {
       dispatch(gameOver());
