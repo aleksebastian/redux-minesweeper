@@ -32,7 +32,6 @@ export const cellsSlice = createSlice({
         if (cellState !== "hidden") {
           return;
         } else if (cell.mine) {
-          // state.cells.forEach((row: any) => console.log(row));
           state.cells[cell.x][cell.y].state = "mine";
           return;
         } else {
