@@ -4,10 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: whitesmoke;
-  border: 2px solid rgb(168, 165, 162);
+  color: rgb(30 58 138);
+  /* border: 2px solid rgb(168, 165, 162); */
   user-select: none;
   border-radius: 0.125rem;
+  font-size: 1.4rem;
 }
 
 .hidden {

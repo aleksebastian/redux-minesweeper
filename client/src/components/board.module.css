@@ -1,10 +1,10 @@
 .board {
   display: inline-grid;
   padding: 10px;
-  grid-template-columns: repeat(var(--size), 40px);
-  grid-template-rows: repeat(var(--size), 40px);
-  gap: 3px;
-  background-color: rgb(100 116 139);
+  grid-template-columns: repeat(var(--size), 35px);
+  grid-template-rows: repeat(var(--size), 35px);
+  gap: 4px;
+  background-color: rgb(30 58 138);
   filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
     drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
   border-radius: 0.25rem;
