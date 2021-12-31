@@ -15,6 +15,7 @@ const Board = () => {
   let numOfMines = 10;
   let board = createBoard(boardSize, numOfMines);
   var boardStyle = { "--size": boardSize } as React.CSSProperties;
+
   const dispatch = useAppDispatch();
 
   dispatch(setGameStats({ mineCount: numOfMines, size: boardSize }));

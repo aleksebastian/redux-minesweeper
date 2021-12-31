@@ -3,7 +3,7 @@ import styles from "./cell.module.css";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { revealCell, markCell, gameOver, selectCells } from "./cellSlice";
-import { updateMineCount, startGame, resetGame } from "./gameSlice";
+import { updateMineCount, startGame, endGame, resetGame } from "./gameSlice";
 
 type CellProps = {
   x: number;
@@ -23,12 +23,14 @@ const Cell = ({ x, y }: CellProps) => {
     e.preventDefault();
     dispatch(markCell(globalCellProps));
     dispatch(updateMineCount(state));
+    dispatch(startGame());
   };
 
   const handleRightClick = (e: any) => {
     e.preventDefault();
     if (mine) {
       dispatch(gameOver());
+      dispatch(endGame());
     } else {
       dispatch(revealCell(globalCellProps));
       dispatch(startGame());

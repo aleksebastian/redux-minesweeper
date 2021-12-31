@@ -7,6 +7,7 @@ const initialState: any = {
     mineCount: 0,
     currentMineCount: 0,
     started: false,
+    reset: false,
   },
 };
 
@@ -20,11 +21,16 @@ export const gameSlice = createSlice({
       state.game.size = action.payload.size;
     },
     startGame: (state) => {
+      state.game.reset = false;
       state.game.started = true;
+    },
+    endGame: (state) => {
+      state.game.started = false;
     },
     resetGame: (state) => {
       state.game.started = false;
       state.game.currentMineCount = state.game.mineCount;
+      state.game.reset = true;
     },
     updateMineCount: (state, action: PayloadAction<any>) => {
       if (action.payload === "hidden") {
@@ -38,7 +44,7 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setGameStats, startGame, resetGame, updateMineCount } =
+export const { setGameStats, startGame, endGame, resetGame, updateMineCount } =
   gameSlice.actions;
 
 export const selectGame = (state: RootState) => state.game.game;

@@ -3,7 +3,9 @@ import styles from "./gameState.module.css";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { selectGame, resetGame } from "./gameSlice";
-import { selectCells } from "./cellSlice";
+import { selectCells, setBoard } from "./cellSlice";
+
+import { createBoard, nearbyCells } from "./boardUtils";
 
 const Display = ({ data }: any) => {
   return <div className={styles.display}>{data}</div>;
@@ -11,20 +13,26 @@ const Display = ({ data }: any) => {
 
 const GameStatus = (props: any) => {
   const dispatch = useAppDispatch();
-  const { currentMineCount, started } = useAppSelector(selectGame);
+  const { currentMineCount, started, size, mineCount } =
+    useAppSelector(selectGame);
 
   const [counter, setCounter] = useState(0);
+  let timer: any;
 
   useEffect(() => {
     if (started) {
-      setTimeout(() => setCounter(counter + 1), 1000);
+      timer = setTimeout(() => setCounter(counter + 1), 1000);
     } else {
-      setCounter(0);
+      clearTimeout(timer);
     }
   }, [started, counter]);
 
   const handleClick = () => {
+    clearTimeout(timer);
     dispatch(resetGame());
+    setCounter(0);
+    const board = createBoard(size, mineCount);
+    dispatch(setBoard(board));
   };
 
   return (
