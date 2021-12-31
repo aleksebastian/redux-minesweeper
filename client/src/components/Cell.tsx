@@ -3,6 +3,7 @@ import styles from "./cell.module.css";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { revealCell, markCell, gameOver, selectCells } from "./cellSlice";
+import { updateMineCount, startGame, resetGame } from "./gameSlice";
 
 type CellProps = {
   x: number;
@@ -21,6 +22,7 @@ const Cell = ({ x, y }: CellProps) => {
   const handleLeftClick = (e: any) => {
     e.preventDefault();
     dispatch(markCell(globalCellProps));
+    dispatch(updateMineCount(state));
   };
 
   const handleRightClick = (e: any) => {
@@ -29,13 +31,14 @@ const Cell = ({ x, y }: CellProps) => {
       dispatch(gameOver());
     } else {
       dispatch(revealCell(globalCellProps));
+      dispatch(startGame());
     }
   };
 
   const cellStyles: any = {
-    hidden: { backgroundColor: "rgb(87 83 78)", cursor: "pointer" },
+    hidden: { backgroundColor: "rgb(250 250 300)", cursor: "pointer" },
     marked: { backgroundColor: "rgb(251 191 36)" },
-    number: { backgroundColor: "rgb(30 41 59)" },
+    number: { backgroundColor: "rgb(209 213 219)" },
     mine: { backgroundColor: "rgb(220 38 38)" },
   };
 
