@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cellsReducer from "./components/cellSlice";
+import gameReducer from "./components/gameSlice";
 
 const store = configureStore({
   reducer: {
     cells: cellsReducer,
+    game: gameReducer,
   },
 });
 
