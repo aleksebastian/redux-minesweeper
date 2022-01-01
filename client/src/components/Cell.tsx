@@ -7,13 +7,7 @@ import { updateMineCount, startGame, endGame, wonGame } from "./gameSlice";
 
 import { checkForWin } from "./boardUtils";
 
-type CellProps = {
-  x: number;
-  y: number;
-  mine: boolean;
-  state: string;
-  number: number;
-};
+import { CellProps } from "../types/cellTypes";
 
 const Cell = ({ x, y }: CellProps) => {
   const dispatch = useAppDispatch();

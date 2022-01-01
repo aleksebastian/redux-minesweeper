@@ -3,14 +3,9 @@ import type { RootState } from "../store";
 
 import { nearbyCells } from "./boardUtils";
 
-type cell = {
-  x: number;
-  y: number;
-  mine: boolean;
-  state: string;
-  number: number;
-};
-type row = [cell];
+import { CellProps } from "../types/cellTypes";
+
+type row = [CellProps];
 type board = [row];
 
 interface Cells {
@@ -28,18 +23,18 @@ export const cellsSlice = createSlice({
     setBoard: (state, action: PayloadAction<any>) => {
       state.cells = action.payload;
     },
-    markCell: (state, action: PayloadAction<cell>) => {
-      const cell = action.payload;
-      const cellState = state.cells[cell.x][cell.y].state;
+    markCell: (state, action: PayloadAction<CellProps>) => {
+      const { x, y } = action.payload;
+      const cellState = state.cells[x][y].state;
       if (cellState === "hidden") {
-        state.cells[cell.x][cell.y].state = "marked";
+        state.cells[x][y].state = "marked";
       } else if (cellState === "marked") {
-        state.cells[cell.x][cell.y].state = "hidden";
+        state.cells[x][y].state = "hidden";
       } else {
         return;
       }
     },
-    revealCell: (state, action: PayloadAction<cell>) => {
+    revealCell: (state, action: PayloadAction<CellProps>) => {
       const revealCell = (cell = action.payload) => {
         const cellState = state.cells[cell.x][cell.y].state;
 
