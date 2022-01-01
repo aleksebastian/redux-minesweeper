@@ -39,3 +39,10 @@
   box-shadow: rgb(209 213 219) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
+
+.resultText {
+  text-align: center;
+  padding-bottom: 1rem;
+  font-size: 1.5rem;
+  height: 2rem;
+}

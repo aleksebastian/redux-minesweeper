@@ -36,6 +36,7 @@ const GameStatus = () => {
   };
 
   const [currBtnVal, setBtnVal] = useState(btnVals.default);
+  const [resultText, setResultText] = useState("");
 
   useEffect(() => {
     if (started) {
@@ -48,8 +49,10 @@ const GameStatus = () => {
       if (counter > 0) {
         if (won) {
           setBtnVal(btnVals.win);
+          setResultText("You won!");
         } else {
           setBtnVal(btnVals.gameOver);
+          setResultText("Game over!");
         }
       }
     }
@@ -62,6 +65,7 @@ const GameStatus = () => {
     const board = createBoard(size, mineCount);
     dispatch(setBoard(board));
     setBtnVal(btnVals.default);
+    setResultText("");
   };
 
   const handleHover = () => {
@@ -73,17 +77,20 @@ const GameStatus = () => {
   };
 
   return (
-    <div className={styles.main}>
-      <Display data={currentMineCount} />
-      <button
-        className={styles.button}
-        onClick={handleClick}
-        onMouseEnter={handleHover}
-        onMouseLeave={handleHover}
-      >
-        {currBtnVal}
-      </button>
-      <Display data={counter} />
+    <div>
+      <p className={styles.resultText}>{resultText}</p>
+      <div className={styles.main}>
+        <Display data={currentMineCount} />
+        <button
+          className={styles.button}
+          onClick={handleClick}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleHover}
+        >
+          {currBtnVal}
+        </button>
+        <Display data={counter} />
+      </div>
     </div>
   );
 };

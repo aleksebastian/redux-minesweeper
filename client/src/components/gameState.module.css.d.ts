@@ -4,6 +4,7 @@ declare namespace GameStateModuleCssNamespace {
     display: string;
     displayData: string;
     main: string;
+    resultText: string;
   }
 }
 
