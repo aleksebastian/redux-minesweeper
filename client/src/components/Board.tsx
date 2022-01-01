@@ -11,8 +11,8 @@ import { createBoard } from "./boardUtils";
 import Cell from "./Cell";
 
 const Board = () => {
-  let boardSize = 10;
-  let numOfMines = 2;
+  let boardSize = 9;
+  let numOfMines = 10;
   let board = createBoard(boardSize, numOfMines);
   var boardStyle = { "--size": boardSize } as React.CSSProperties;
 
