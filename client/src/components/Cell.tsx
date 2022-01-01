@@ -46,7 +46,7 @@ const Cell = ({ x, y }: CellProps) => {
     }
   }, [state]);
 
-  const cellStyles: any = {
+  const cellStyles: { [k: string]: React.CSSProperties } = {
     hidden: { backgroundColor: "rgb(250 250 300)", cursor: "pointer" },
     marked: { backgroundColor: "rgb(251 191 36)" },
     number: { backgroundColor: "rgb(209 213 219)" },
