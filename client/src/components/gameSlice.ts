@@ -13,6 +13,7 @@ type gameProps = {
   started: boolean;
   reset: boolean;
   won: boolean;
+  lost: boolean;
 };
 
 type game = {
@@ -27,6 +28,7 @@ const initialState: game = {
     started: false,
     reset: false,
     won: false,
+    lost: false,
   },
 };
 
@@ -45,6 +47,7 @@ export const gameSlice = createSlice({
     },
     endGame: (state) => {
       state.game.started = false;
+      state.game.lost = true;
     },
     wonGame: (state) => {
       state.game.won = true;
@@ -52,6 +55,8 @@ export const gameSlice = createSlice({
     },
     resetGame: (state) => {
       state.game.started = false;
+      state.game.won = false;
+      state.game.lost = false;
       state.game.currentMineCount = state.game.mineCount;
       state.game.reset = true;
     },
