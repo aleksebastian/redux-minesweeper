@@ -1,3 +1,5 @@
+import { CellProps } from "../types/cellTypes";
+
 const getRandomNum = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min) + min);
 
@@ -46,21 +48,14 @@ const createBoard = (boardSize: number, numOfMines: number) => {
   return board;
 };
 
-type cell = {
-  x: number;
-  y: number;
-  mine: boolean;
-  state: string;
-  number: number;
-};
-type row = [cell];
+type row = [CellProps];
 type board = [row];
 
 interface Cells {
   cells: board;
 }
 
-const nearbyCells = (board: board, { x, y }: cell) => {
+const nearbyCells = (board: board, { x, y }: CellProps) => {
   const cells = [];
 
   for (let xOffSet = -1; xOffSet <= 1; xOffSet++) {
@@ -75,9 +70,8 @@ const nearbyCells = (board: board, { x, y }: cell) => {
   return cells;
 };
 
-const checkForWin = (board: any) => {
-  // let hasWon = false;
-  return board.every((row: any) =>
+const checkForWin = (board: board) => {
+  return board.every((row) =>
     row.every(
       (cell: any) =>
         cell.state === "number" ||
