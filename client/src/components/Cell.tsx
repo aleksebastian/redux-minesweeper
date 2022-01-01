@@ -25,8 +25,8 @@ const Cell = ({ x, y }: CellProps) => {
   const handleRightClick = (e: MouseEvent) => {
     e.preventDefault();
     if (mine) {
-      dispatch(gameOver());
       dispatch(endGame());
+      dispatch(gameOver());
     } else {
       dispatch(revealCell(globalCellProps));
       dispatch(startGame());
