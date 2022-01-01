@@ -1,9 +1,11 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, useEffect } from "react";
 import styles from "./cell.module.css";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { revealCell, markCell, gameOver, selectCells } from "./cellSlice";
-import { updateMineCount, startGame, endGame } from "./gameSlice";
+import { updateMineCount, startGame, endGame, wonGame } from "./gameSlice";
+
+import { checkForWin } from "./boardUtils";
 
 type CellProps = {
   x: number;
@@ -36,6 +38,13 @@ const Cell = ({ x, y }: CellProps) => {
       dispatch(startGame());
     }
   };
+
+  useEffect(() => {
+    const hasWon = checkForWin(reduxCellState);
+    if (hasWon) {
+      dispatch(wonGame());
+    }
+  }, [state]);
 
   const cellStyles: any = {
     hidden: { backgroundColor: "rgb(250 250 300)", cursor: "pointer" },

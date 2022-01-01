@@ -17,7 +17,7 @@ const Display = ({ data }: Data) => {
 
 const GameStatus = () => {
   const dispatch = useAppDispatch();
-  const { currentMineCount, started, size, mineCount } =
+  const { currentMineCount, started, size, mineCount, won } =
     useAppSelector(selectGame);
 
   const [counter, setCounter] = useState(0);
@@ -28,7 +28,7 @@ const GameStatus = () => {
     started: "😬",
     reset: "😰",
     gameOver: "😭",
-    win: "🤯",
+    win: "🥳",
   };
 
   const [currBtnVal, setBtnVal] = useState(btnVals.default);
@@ -42,7 +42,11 @@ const GameStatus = () => {
     } else {
       clearTimeout(timer);
       if (counter > 0) {
-        setBtnVal(btnVals.gameOver);
+        if (won) {
+          setBtnVal(btnVals.win);
+        } else {
+          setBtnVal(btnVals.gameOver);
+        }
       }
     }
   }, [started, counter]);

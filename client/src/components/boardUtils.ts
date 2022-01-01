@@ -75,4 +75,15 @@ const nearbyCells = (board: board, { x, y }: cell) => {
   return cells;
 };
 
-export { createBoard, nearbyCells };
+const checkForWin = (board: any) => {
+  // let hasWon = false;
+  return board.every((row: any) =>
+    row.every(
+      (cell: any) =>
+        cell.state === "number" ||
+        (cell.mine && (cell.state === "hidden" || cell.state === "marked"))
+    )
+  );
+};
+
+export { createBoard, nearbyCells, checkForWin };

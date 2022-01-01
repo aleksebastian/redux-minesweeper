@@ -12,6 +12,7 @@ type gameProps = {
   currentMineCount: number;
   started: boolean;
   reset: boolean;
+  won: boolean;
 };
 
 type game = {
@@ -25,6 +26,7 @@ const initialState: game = {
     currentMineCount: 0,
     started: false,
     reset: false,
+    won: false,
   },
 };
 
@@ -44,6 +46,10 @@ export const gameSlice = createSlice({
     endGame: (state) => {
       state.game.started = false;
     },
+    wonGame: (state) => {
+      state.game.won = true;
+      state.game.started = false;
+    },
     resetGame: (state) => {
       state.game.started = false;
       state.game.currentMineCount = state.game.mineCount;
@@ -61,8 +67,14 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setGameStats, startGame, endGame, resetGame, updateMineCount } =
-  gameSlice.actions;
+export const {
+  setGameStats,
+  startGame,
+  endGame,
+  resetGame,
+  updateMineCount,
+  wonGame,
+} = gameSlice.actions;
 
 export const selectGame = (state: RootState) => state.game.game;
 
