@@ -12,7 +12,11 @@ interface Data {
 }
 
 const Display = ({ data }: Data) => {
-  return <div className={styles.display}>{data}</div>;
+  return (
+    <div className={styles.display}>
+      <p className={styles.displayData}>{data}</p>
+    </div>
+  );
 };
 
 const GameStatus = () => {

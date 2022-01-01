@@ -2,6 +2,7 @@ declare namespace GameStateModuleCssNamespace {
   export interface IGameStateModuleCss {
     button: string;
     display: string;
+    displayData: string;
     main: string;
   }
 }
