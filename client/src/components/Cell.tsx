@@ -3,7 +3,13 @@ import styles from "./cell.module.css";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { revealCell, markCell, gameOver, selectCells } from "./cellSlice";
-import { updateMineCount, startGame, endGame, wonGame } from "./gameSlice";
+import {
+  updateMineCount,
+  startGame,
+  endGame,
+  wonGame,
+  selectGame,
+} from "./gameSlice";
 
 import { checkForWin } from "./boardUtils";
 
@@ -11,6 +17,7 @@ import { CellProps } from "../types/cellTypes";
 
 const Cell = ({ x, y }: CellProps) => {
   const dispatch = useAppDispatch();
+  const { started, lost } = useAppSelector(selectGame);
   const reduxCellState = useAppSelector(selectCells);
   const { mine, state, number } = reduxCellState[x][y];
   const globalCellProps = { x, y, mine, state, number };
@@ -19,7 +26,7 @@ const Cell = ({ x, y }: CellProps) => {
     e.preventDefault();
     dispatch(markCell(globalCellProps));
     dispatch(updateMineCount(state));
-    dispatch(startGame());
+    !started ? dispatch(startGame()) : null;
   };
 
   const handleRightClick = (e: MouseEvent) => {
@@ -29,7 +36,7 @@ const Cell = ({ x, y }: CellProps) => {
       dispatch(gameOver());
     } else {
       dispatch(revealCell(globalCellProps));
-      dispatch(startGame());
+      !started ? dispatch(startGame()) : null;
     }
   };
 
@@ -42,7 +49,7 @@ const Cell = ({ x, y }: CellProps) => {
 
   const cellStyles: { [k: string]: React.CSSProperties } = {
     hidden: { backgroundColor: "rgb(250 250 300)", cursor: "pointer" },
-    marked: { backgroundColor: "rgb(251 191 36)" },
+    marked: { backgroundColor: "rgb(251 191 36)", color: "red" },
     number: { backgroundColor: "rgb(209 213 219)" },
     mine: { backgroundColor: "rgb(220 38 38)" },
   };
@@ -51,10 +58,12 @@ const Cell = ({ x, y }: CellProps) => {
     <div
       className={styles.cell}
       style={cellStyles[state]}
-      onClick={handleRightClick}
-      onContextMenu={handleLeftClick}
+      onClick={!lost && handleRightClick}
+      onContextMenu={!lost && handleLeftClick}
     >
-      {number && !mine && state === "number" ? number : null}
+      {number && !mine && (state === "number" || state === "marked")
+        ? number
+        : null}
     </div>
   );
 };
