@@ -3,5 +3,5 @@ export interface CellProps {
   y: number;
   mine: boolean;
   state: string;
-  number: number;
+  number: number | string;
 }
