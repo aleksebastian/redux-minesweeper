@@ -61,11 +61,10 @@ export const cellsSlice = createSlice({
     gameOver: (state) => {
       state.cells.forEach((row) => {
         row.forEach((cell) => {
-          cell.state = cell.mine ? "mine" : "number";
-          if (!cell.number) {
-            const adjacentCells = nearbyCells(state.cells, cell);
-            const adjacentMines = adjacentCells.filter((cell) => cell.mine);
-            cell.number = adjacentMines.length;
+          if (cell.state === "marked" && !cell.mine) {
+            cell.number = "X";
+          } else {
+            cell.state = cell.mine ? "mine" : cell.state;
           }
         });
       });
