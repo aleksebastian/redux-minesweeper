@@ -62,9 +62,10 @@ export const cellsSlice = createSlice({
       state.cells.forEach((row) => {
         row.forEach((cell) => {
           if (cell.state === "marked" && !cell.mine) {
-            cell.number = "X";
+            cell.number = "✖";
           } else {
-            cell.state = cell.mine ? "mine" : cell.state;
+            cell.state =
+              cell.mine && cell.state !== "marked" ? "mine" : cell.state;
           }
         });
       });
