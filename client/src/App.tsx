@@ -6,6 +6,7 @@ import store from "./store";
 
 import GameState from "./components/GameState";
 import Board from "./components/Board";
+import ToggleSwitch from "./components/ToggleSwitch";
 
 const App = () => (
   <Provider store={store}>
@@ -13,6 +14,7 @@ const App = () => (
       <h1 className={styles.header}>Minesweeper</h1>
       <GameState />
       <Board />
+      <ToggleSwitch />
     </div>
   </Provider>
 );
