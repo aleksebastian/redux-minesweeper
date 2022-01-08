@@ -17,7 +17,7 @@ import { CellProps } from "../types/cellTypes";
 
 const Cell = ({ x, y }: CellProps) => {
   const dispatch = useAppDispatch();
-  const { started, lost } = useAppSelector(selectGame);
+  const { started, lost, marking } = useAppSelector(selectGame);
   const reduxCellState = useAppSelector(selectCells);
   const { mine, state, number } = reduxCellState[x][y];
   const globalCellProps = { x, y, mine, state, number };
@@ -31,11 +31,17 @@ const Cell = ({ x, y }: CellProps) => {
 
   const handleRightClick = (e: MouseEvent) => {
     e.preventDefault();
-    if (mine) {
-      dispatch(endGame());
-      dispatch(gameOver());
+    if (!marking) {
+      if (mine) {
+        dispatch(endGame());
+        dispatch(gameOver());
+      } else {
+        dispatch(revealCell(globalCellProps));
+        !started ? dispatch(startGame()) : null;
+      }
     } else {
-      dispatch(revealCell(globalCellProps));
+      dispatch(markCell(globalCellProps));
+      dispatch(updateMineCount(state));
       !started ? dispatch(startGame()) : null;
     }
   };
