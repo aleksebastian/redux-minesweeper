@@ -1,0 +1,94 @@
+.container {
+  /* text-align: center; */
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 991px) {
+  .container {
+    display: none;
+  }
+}
+
+.labelText {
+  font-size: 1rem;
+}
+
+.toggleSwitch {
+  position: relative;
+  width: 75px;
+  display: inline-block;
+  /* text-align: left; */
+  /* top: 8px; fix toggle height */
+}
+
+.checkbox {
+  display: none;
+}
+
+.label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  /* border: 0 solid white; */
+  border-radius: 20px;
+}
+.inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+  /* font-size: 1.3rem; */
+}
+.inner:before,
+.inner:after {
+  float: left;
+  width: 50%;
+  padding: 0;
+  line-height: 36px;
+  color: #fff;
+  /* box-sizing: border-box; */
+  /* height: 36px; */
+  /* font-weight: bold; */
+}
+.inner:before {
+  content: ".";
+  color: rgb(30 58 138);
+  /* padding-left: 8px; */
+  background-color: rgb(30 58 138);
+  /* color: #fff; */
+}
+.inner:after {
+  content: ".";
+  color: #bbb;
+  /* padding-right: 10px; */
+  background-color: #bbb;
+  /* color: #fff; */
+  text-align: right;
+}
+.switch {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 3px;
+  background: white;
+  position: absolute;
+  /* top: 0;
+  bottom: 0; */
+  right: 40px;
+  border: 0 solid #bbb;
+  border-radius: 50%;
+  transition: all 0.3s ease-in 0s;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 29px;
+}
+
+.checkbox:checked + .label .inner {
+  margin-left: 0;
+}
+.checkbox:checked + .label .switch {
+  right: 0px;
+}
