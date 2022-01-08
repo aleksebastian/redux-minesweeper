@@ -14,6 +14,7 @@ type gameProps = {
   reset: boolean;
   won: boolean;
   lost: boolean;
+  marking: boolean;
 };
 
 type game = {
@@ -29,6 +30,7 @@ const initialState: game = {
     reset: false,
     won: false,
     lost: false,
+    marking: false,
   },
 };
 
@@ -69,6 +71,10 @@ export const gameSlice = createSlice({
         state.game.currentMineCount = currMineCount + 1;
       }
     },
+    setMarkingToggle: (state) => {
+      const currentMarkingState = state.game.marking;
+      state.game.marking = !state.game.marking;
+    },
   },
 });
 
@@ -79,6 +85,7 @@ export const {
   resetGame,
   updateMineCount,
   wonGame,
+  setMarkingToggle,
 } = gameSlice.actions;
 
 export const selectGame = (state: RootState) => state.game.game;
