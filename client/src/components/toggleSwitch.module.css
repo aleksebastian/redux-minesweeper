@@ -1,9 +1,10 @@
 .container {
-  /* text-align: center; */
   display: flex;
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  /* text-align: center; */
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (min-width: 991px) {
@@ -32,14 +33,16 @@
   display: block;
   overflow: hidden;
   cursor: pointer;
-  /* border: 0 solid white; */
   border-radius: 20px;
+  /* border: 0 solid white; */
 }
 .inner {
   display: block;
+  position: relative;
   width: 200%;
-  margin-left: -100%;
-  transition: margin 0.3s ease-in 0s;
+  /* margin-left: -100%; */
+  left: -100%;
+  transition: all 0.3s ease-in 0s;
   /* font-size: 1.3rem; */
 }
 .inner:before,
@@ -56,17 +59,19 @@
 .inner:before {
   content: ".";
   color: rgb(30 58 138);
-  /* padding-left: 8px; */
   background-color: rgb(30 58 138);
+  /* border-radius: 20px; */
+  /* padding-left: 8px; */
   /* color: #fff; */
 }
 .inner:after {
   content: ".";
   color: #bbb;
-  /* padding-right: 10px; */
   background-color: #bbb;
+  /* border-radius: 20px; */
+  /* text-align: right; */
+  /* padding-right: 10px; */
   /* color: #fff; */
-  text-align: right;
 }
 .switch {
   display: block;
@@ -75,20 +80,20 @@
   margin: 3px;
   background: white;
   position: absolute;
-  /* top: 0;
-  bottom: 0; */
-  right: 40px;
+  right: 52%;
   border: 0 solid #bbb;
   border-radius: 50%;
   transition: all 0.3s ease-in 0s;
   font-size: 1rem;
   text-align: center;
   line-height: 29px;
+  /* top: 0;
+  bottom: 0; */
 }
 
 .checkbox:checked + .label .inner {
-  margin-left: 0;
+  left: 0;
 }
 .checkbox:checked + .label .switch {
-  right: 0px;
+  right: 0;
 }

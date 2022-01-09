@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import styles from "./toggleSwitch.module.css";
 import { useAppDispatch } from "../hooks";
-
 import { setMarkingToggle } from "./gameSlice";
+
+import styles from "./toggleSwitch.module.css";
 
 const ToggleSwitch = () => {
   const [isToggled, setToggled] = useState(false);
-  const label = "mark mines";
   let toggleEmoji = isToggled ? "✏️" : "⛏️";
   const dispatch = useAppDispatch();
 
@@ -14,6 +13,8 @@ const ToggleSwitch = () => {
     setToggled(!isToggled);
     dispatch(setMarkingToggle());
   };
+
+  const label = "mark mines";
 
   return (
     <div className={styles.container}>
