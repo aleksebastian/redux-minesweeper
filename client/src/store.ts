@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cellsReducer from "./components/cellSlice";
-import gameReducer from "./components/gameSlice";
+import cellsReducer from "./components/cell/cellSlice";
+import gameReducer from "./components/gameState/gameSlice";
 
 const store = configureStore({
   reducer: {

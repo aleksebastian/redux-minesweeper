@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../store";
+import type { RootState } from "../../store";
 
 type setGameStats = {
-  size: number;
+  width: number;
+  height: number;
   mineCount: number;
 };
 
 type gameProps = {
-  size: number;
+  width: number;
+  height: number;
   mineCount: number;
   currentMineCount: number;
   started: boolean;
@@ -23,9 +25,10 @@ type game = {
 
 const initialState: game = {
   game: {
-    size: 0,
-    mineCount: 0,
-    currentMineCount: 0,
+    width: 9,
+    height: 9,
+    mineCount: 10,
+    currentMineCount: 10,
     started: false,
     reset: false,
     won: false,
@@ -41,7 +44,8 @@ export const gameSlice = createSlice({
     setGameStats: (state, action: PayloadAction<setGameStats>) => {
       state.game.mineCount = action.payload.mineCount;
       state.game.currentMineCount = action.payload.mineCount;
-      state.game.size = action.payload.size;
+      state.game.width = action.payload.width;
+      state.game.height = action.payload.height;
     },
     startGame: (state) => {
       state.game.reset = false;
@@ -56,11 +60,17 @@ export const gameSlice = createSlice({
       state.game.started = false;
     },
     resetGame: (state) => {
-      state.game.started = false;
-      state.game.won = false;
-      state.game.lost = false;
-      state.game.currentMineCount = state.game.mineCount;
-      state.game.reset = true;
+      const resetState = state.game.reset;
+
+      if (!resetState) {
+        state.game.started = false;
+        state.game.won = false;
+        state.game.lost = false;
+        state.game.currentMineCount = state.game.mineCount;
+        state.game.reset = true;
+      } else {
+        state.game.reset = false;
+      }
     },
     updateMineCount: (state, action: PayloadAction<string>) => {
       if (action.payload === "hidden") {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useAppDispatch } from "../hooks";
-import { setMarkingToggle } from "./gameSlice";
+import { useAppDispatch } from "../../hooks";
+import { setMarkingToggle } from "../gameState/gameSlice";
 
 import styles from "./toggleSwitch.module.css";
 

@@ -12,3 +12,18 @@
   font-size: 3rem;
   font-weight: 500;
 }
+
+.settings {
+  display: flex;
+}
+
+@media (max-width: 991px) {
+  .settings {
+    justify-content: space-around;
+    width: 388px;
+  }
+}
+
+.extra {
+  flex-basis: 10%;
+}

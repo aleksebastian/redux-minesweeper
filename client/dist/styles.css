@@ -147,3 +147,21 @@ body {
   font-family: "IBM Plex Mono", monospace;
   font-weight: 400;
 }
+
+@keyframes inAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes outAnimation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

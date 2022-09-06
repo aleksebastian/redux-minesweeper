@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../store";
-
-import { nearbyCells } from "./boardUtils";
-
-import { CellProps } from "../types/cellTypes";
+import type { CellProps } from "./types";
+import type { RootState } from "../../store";
+import { nearbyCells } from "../board/boardUtils";
 
 type row = [CellProps];
 type board = [row];

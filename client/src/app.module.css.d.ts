@@ -1,7 +1,9 @@
 declare namespace AppModuleCssNamespace {
   export interface IAppModuleCss {
+    extra: string;
     header: string;
     main: string;
+    settings: string;
   }
 }
 

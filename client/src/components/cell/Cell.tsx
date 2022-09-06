@@ -1,7 +1,6 @@
 import React, { MouseEvent, useEffect } from "react";
 import styles from "./cell.module.css";
-
-import { useAppSelector, useAppDispatch } from "../hooks";
+import { useAppSelector, useAppDispatch } from "../../hooks";
 import { revealCell, markCell, gameOver, selectCells } from "./cellSlice";
 import {
   updateMineCount,
@@ -9,24 +8,25 @@ import {
   endGame,
   wonGame,
   selectGame,
-} from "./gameSlice";
-
-import { checkForWin } from "./boardUtils";
-
-import { CellProps } from "../types/cellTypes";
+} from "../gameState/gameSlice";
+import { checkForWin } from "../board/boardUtils";
+import { CellProps } from "../cell/types";
 
 const Cell = ({ x, y }: CellProps) => {
   const dispatch = useAppDispatch();
-  const { started, lost, marking } = useAppSelector(selectGame);
+  const { started, lost, marking, currentMineCount } =
+    useAppSelector(selectGame);
   const reduxCellState = useAppSelector(selectCells);
   const { mine, state, number } = reduxCellState[x][y];
   const globalCellProps = { x, y, mine, state, number };
 
   const handleLeftClick = (e: MouseEvent) => {
     e.preventDefault();
-    dispatch(markCell(globalCellProps));
-    dispatch(updateMineCount(state));
-    !started ? dispatch(startGame()) : null;
+    if (currentMineCount > 0) {
+      dispatch(markCell(globalCellProps));
+      dispatch(updateMineCount(state));
+      !started ? dispatch(startGame()) : null;
+    }
   };
 
   const handleRightClick = (e: MouseEvent) => {
@@ -64,8 +64,8 @@ const Cell = ({ x, y }: CellProps) => {
     <div
       className={styles.cell}
       style={cellStyles[state]}
-      onClick={!lost && handleRightClick}
-      onContextMenu={!lost && handleLeftClick}
+      onClick={!lost ? handleRightClick : undefined}
+      onContextMenu={!lost ? handleLeftClick : undefined}
     >
       {number && !mine && (state === "number" || state === "marked")
         ? number

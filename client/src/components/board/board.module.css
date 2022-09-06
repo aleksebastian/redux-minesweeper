@@ -1,8 +1,8 @@
 .board {
   display: inline-grid;
   padding: 10px;
-  grid-template-columns: repeat(var(--size), 35px);
-  grid-template-rows: repeat(var(--size), 35px);
+  grid-template-columns: repeat(var(--width), 35px);
+  grid-template-rows: repeat(var(--height), 35px);
   gap: 4px;
   background-color: rgb(30 58 138);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "./gameState.module.css";
-
-import { useAppSelector, useAppDispatch } from "../hooks";
+import { useAppSelector, useAppDispatch } from "../../hooks";
 import { selectGame, resetGame } from "./gameSlice";
-import { setBoard } from "./cellSlice";
-
-import { createBoard } from "./boardUtils";
+import { setBoard } from "../cell/cellSlice";
+import { createBoard } from "../board/boardUtils";
 
 interface Data {
   data: string | number;
@@ -21,8 +19,16 @@ const Display = ({ data }: Data) => {
 
 const GameStatus = () => {
   const dispatch = useAppDispatch();
-  const { currentMineCount, started, size, mineCount, won, lost } =
-    useAppSelector(selectGame);
+  const {
+    currentMineCount,
+    started,
+    width,
+    height,
+    mineCount,
+    won,
+    lost,
+    reset,
+  } = useAppSelector(selectGame);
 
   const [counter, setCounter] = useState(0);
   let timer: ReturnType<typeof setTimeout>;
@@ -52,15 +58,21 @@ const GameStatus = () => {
       } else if (lost) {
         setBtnVal(btnVals.gameOver);
         setResultText("Game over");
+      } else if (reset) {
+        setCounter(0);
+        setBtnVal(btnVals.default);
+        setTimeout(() => {
+          dispatch(resetGame());
+        }, 400);
       }
     }
-  }, [started, counter, won, lost]);
+  }, [started, counter, won, lost, reset]);
 
   const handleClick = () => {
     clearTimeout(timer);
     dispatch(resetGame());
     setCounter(0);
-    const board = createBoard(size, mineCount);
+    const board = createBoard(width, height, mineCount);
     dispatch(setBoard(board));
     setBtnVal(btnVals.default);
     setResultText("");

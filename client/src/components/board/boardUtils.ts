@@ -1,4 +1,4 @@
-import { CellProps } from "../types/cellTypes";
+import { CellProps } from "../cell/types";
 
 const getRandomNum = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min) + min);
@@ -11,13 +11,17 @@ type positions = {
 const positionMatch = (a: positions, b: positions) =>
   a.x === b.x && a.y === b.y;
 
-const getMinePositions = (boardSize: number, numOfMines: number) => {
+const getMinePositions = (
+  boardWidth: number,
+  boardHeight: number,
+  numOfMines: number
+) => {
   const minePositions: positions[] = [];
 
   while (minePositions.length < numOfMines) {
     const minePosition = {
-      x: getRandomNum(0, boardSize),
-      y: getRandomNum(0, boardSize),
+      x: getRandomNum(0, boardWidth),
+      y: getRandomNum(0, boardHeight),
     };
 
     if (!minePositions.some((p: positions) => positionMatch(p, minePosition))) {
@@ -27,13 +31,17 @@ const getMinePositions = (boardSize: number, numOfMines: number) => {
   return minePositions;
 };
 
-const createBoard = (boardSize: number, numOfMines: number) => {
+const createBoard = (
+  boardWidth: number,
+  boardHeight: number,
+  numOfMines: number
+) => {
   const board = [];
-  const minePositions = getMinePositions(boardSize, numOfMines);
+  const minePositions = getMinePositions(boardWidth, boardHeight, numOfMines);
 
-  for (let x = 0; x < boardSize; x++) {
+  for (let x = 0; x < boardWidth; x++) {
     const row = [];
-    for (let y = 0; y < boardSize; y++) {
+    for (let y = 0; y < boardHeight; y++) {
       const cell = {
         x,
         y,
